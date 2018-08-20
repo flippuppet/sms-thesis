@@ -1,0 +1,106 @@
+% yomcat's thesis style. Butchered version of a few things from ECS, and changed for SCPS, and then back again
+
+% setting the margins...
+\setlength{\textheight}{22.5cm}
+
+\if@twoside
+	\setlength{\oddsidemargin}{1.46cm}
+	\setlength{\evensidemargin}{0.83cm}
+\else 
+	\setlength{\oddsidemargin}{1.46cm}
+\fi
+
+% to declare the degree
+
+\def\phd{\gdef\@degree{Doctor of Philosophy}}
+\def\mscthesisonly{\gdef\@degree{Master of Science}}
+\def\mscwithhonours{\gdef\@degree{Master of Science with Honours} \gdef\@ffil{partial fulfilment}}
+\def\mscbothparts{\gdef\@degree{Master of Science} \gdef\@ffil{partial fulfilment}}
+\def\otherdegree#1{\gdef\@degree{#1}}
+\gdef\@degree{DEGREE NOT STATED}
+\gdef\@ffil{fulfilment}
+
+% MSOR, for the title page.
+\gdef\Msor@school{School of Mathematics and Statistics \\ \pali Te Kura M\=atai Tatauranga, Rangahau P\=unaha}
+\gdef\Msor@schoolacronymlower{msor}
+
+% to declare the subject
+\def\subject#1{\gdef\@subject{#1}}
+\gdef\@subject{SUBJECT NOT STATED}
+
+% to declare the supervisor
+\def\supervisor#1{\gdef\@supervisor{#1}}
+\gdef\@supervisor{SUPERVISOR NOT STATED}
+
+% some fonts for the title page.
+\font\pal = pplr scaled 1400
+\font\pali = pplri scaled 1400
+\font\bigpal = pplr scaled 2820
+\def\t@s{\kern 1.4pt}
+\def\t@t{\kern 0.4pt}
+
+% abstract and acknowledgments. Just normal commands.
+\newcommand{\abstract}[1]{\gdef\@abstract{#1}}
+\newcommand{\ack}[1]{\gdef\@ack{#1}}
+
+% putting it together
+\def\maketitle{\begin{titlepage}
+	\thispagestyle{empty}
+	\let\footnotesize\small
+	\let\footnoterule\relax
+	\if@twoside\setcounter{page}{-1}\else\setcounter{page}{0}\fi
+	\null
+
+	\begin{center}
+		\parbox{100mm}{\center\LARGE\bf\@title}\par\par
+		\parbox{100mm}{\center\large\@author}
+		\parbox{100mm}{\center\large\@supervisor}
+		\vspace*{\stretch{3}}
+		\begin{center}
+			% Nice big VUW words
+			{\pal V\t@s I\t@s C\t@s T\t@s O\t@s R\t@s I\t@s A\  \t@s U\t@s N\t@s I\t@s V\t@s E\t@s R\t@s S\t@s I\t@s T\t@s Y\ \t@s O\t@s F\ \t@s W\t@s E\t@s L\t@s L\t@s I\t@s N\t@s G\t@s T\t@s O\t@s N}\\*[3pt]
+			% and in Maori - Te Whare W?nanga o te ?poko o te Ika a M?ui
+			{\pali T\t@t e\  W\t@t h\t@t a\t@t r\t@t e\  W\t@t \=a\t@t n\t@t a\t@t n\t@t g\t@t a\  o\  t\t@t e\  \=U\t@t p\t@t o\t@t k\t@t o\  o\  t\t@t e\  I\t@t k\t@t a\  a\  M\t@t \=a\t@t u\t@t i}\\*[8pt]
+			% and a picture - logo.png, in the same folder as your main .tex file.
+			\includegraphics[width=0.36\textwidth]{logo}\\*[8pt]
+			%and school underneath
+			{\pal \Msor@school}
+		\end{center}
+	\vspace*{\stretch{1}}
+	\parbox{100mm}{\center
+			A thesis\\ 
+			submitted to the Victoria University of Wellington\\ 
+			in \@ffil\ of the requirements for the degree of\\  
+			\@degree \\ 
+			in \@subject.}\par
+	\parbox{100mm}{\center Victoria University of Wellington\\ \number\year}
+	\end{center}
+	
+	% Abstract gets its own special page
+	\pagestyle{empty}
+	\if@twoside\cleardoublepage\else\clearpage\fi
+	\mbox{}\vspace{20mm}
+	\begin{center}
+		{\Large\bf Abstract}
+	\end{center}
+	\@abstract
+	
+	% As do the Acknowledgements
+	\pagestyle{empty}
+	\if@twoside\cleardoublepage\else\clearpage\fi
+	\mbox{}\vspace{20mm}
+	\begin{center}
+		{\Large\bf Acknowledgements}
+	\end{center}
+	\@ack
+	\if@twoside\cleardoublepage\else\clearpage\fi
+\end{titlepage}
+
+\gdef\@author{}
+\gdef\@title{}
+\gdef\@degree{}
+\gdef\@ffil{}
+\gdef\@subject{}
+\gdef\@abstract{}
+\let\maketitle\relax
+}

@@ -1,0 +1,70 @@
+\documentclass[12pt,a4paper,twoside,openright]{book} % Library "suggestions" (according to ECS) - switch to oneside if short enough.
+
+\usepackage{amssymb, amsthm, paralist, amsmath, mathrsfs} % Standard Maths packages
+
+\usepackage{tikz} % TikZ for figures
+\usetikzlibrary{calc}
+
+\usepackage{graphicx} % pictures (used for putting the logo in) - make sure you only load it once.
+\usepackage{hyperref} % linking in PDF
+
+\usepackage{setspace} % If you want to make your file ugly
+\onehalfspacing % One and a half spacing. Warning: Looks hideous - needed for Library copy
+%\doublespacing % If you really, really hate yourself.
+
+\usepackage{thesis} % Thesis package, as supplied by yomcat
+
+%\usepackage[notref, notcite]{showkeys} % Shows reference names - remove for final copy
+
+\usepackage{mathptmx} % Times font. Other choices are mathpazo (Palatino), lmodern (Computer Modern), etc.
+\usepackage{longtable} % Allows tables to split over pages
+\setlength{\parskip}{1ex} % How I like my paragraphs to be formatted. (no indentation)
+\setlength{\parindent}{0pt}
+
+\setcounter{tocdepth}{1} % For changing what gets in the Contents.
+\setcounter{secnumdepth}{3} % So subsubsections get numbered
+
+\hyphenpenalty 10000
+\exhyphenpenalty 10000
+
+\begin{document}
+\allowdisplaybreaks
+\frontmatter % For correct page numbering
+
+\author{John Smith}
+\title{Modelling Earth}
+\supervisor{ Supervisor: Sydney Melchior}
+\subject{Statistics}
+\abstract{\input{preamble/abstract}}
+\ack{ \input{preamble/acknowledgements}}
+
+
+\mscthesisonly % It's an MSc, but only Part 2
+
+\maketitle
+
+\tableofcontents
+
+%\listoffigures % If there are enough figures to warrant it.
+
+\mainmatter % The real stuff goes after this
+
+\input{chapters/1_introduction}
+\input{chapters/2_literature}
+\input{chapters/9_conclusion}
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+\input{appendix/a_appendix}
+\input{appendix/b_appendix}
+
+
+\bibliographystyle{acm}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{ref} 
+
+
+\nocite{*}
+\end{document}
